@@ -1,37 +1,41 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="#">Angular App</a>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+  <div class="container">
+      <a class="navbar-brand" href="#">Angular App</a>
 
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-      <a class="nav-link" href="#">Matches</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Lists</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Messages</a>
-    </li>
-  </ul>
+      <ul class="navbar-nav mr-auto" *ngIf="loggedIn()">
 
-  <div class="dropdown" style="margin-right:10px;" *ngIf="loggedIn()">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Welcome User
-    </button>
-    <div class="dropdown-menu" >
-      <a class="dropdown-item" href="#">
-        <i class="fa fa-user"></i>
-        Edit Profile</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" (click)="loggedOut()">
-          <i class="fa fa-sign-out"></i>Logout</a>
-    </div>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Matches</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" href="#">Lists</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" href="#">Messages</a>
+        </li>
+      </ul>
+
+      <div class="dropdown" *ngIf="loggedIn()" dropdown>
+        <a class="dropdown-toggle text-light" id="dropdownMenuButton" dropdownToggle>
+          Welcome  {{authService.decodedToken?.unique_name | titlecase}}
+        </a>
+        <div class="dropdown-menu mt-3" *dropdownMenu>
+          <a class="dropdown-item" href="#">
+            <i class="fa fa-user"></i>
+            Edit Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="loggedOut()">
+              <i class="fa fa-sign-out"></i>Logout</a>
+        </div>
+      </div>
+
+      <form *ngIf="!loggedIn()" class="form-inline my-2 my-lg-0" #loginForm="ngForm" (ngSubmit)="login()" >
+        <input class="form-control mr-sm-2" type="text" name="username"  placeholder="Username" required [(ngModel)]="model.username" >
+        <input class="form-control mr-sm-2" type="password" name="password"  placeholder="Password" required [(ngModel)]="model.password">
+        <button class="btn btn-success my-2 my-sm-0" [disabled]="!loginForm.valid" type="submit">Login</button>
+      </form>
   </div>
 
-  <form *ngIf="!loggedIn()" class="form-inline my-2 my-lg-0" #loginForm="ngForm" (ngSubmit)="login()" >
-    <input class="form-control mr-sm-2" type="text" name="username"  placeholder="Username" required [(ngModel)]="model.username" >
-    <input class="form-control mr-sm-2" type="password" name="password"  placeholder="Password" required [(ngModel)]="model.password">
-    <button class="btn btn-success my-2 my-sm-0" [disabled]="!loginForm.valid" type="submit">Login</button>
-  </form>
 
 </nav>
 
