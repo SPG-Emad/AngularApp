@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthService } from './_services/auth.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,6 +10,9 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 export class AppComponent implements OnInit {
   title = 'AngularApp-SPA';
   jwtHelper = new JwtHelperService();
+
+
+
   constructor(private authService: AuthService) {
 
   }
@@ -17,5 +21,8 @@ export class AppComponent implements OnInit {
     if (token) {
       this.authService.decodedToken = this.jwtHelper.decodeToken(token);
     }
+
   }
+
+
 }
