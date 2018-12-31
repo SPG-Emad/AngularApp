@@ -1,4 +1,4 @@
-.vscode
-bin
-obj
-*.db
+# .vscode
+# bin
+# obj
+# *.db
