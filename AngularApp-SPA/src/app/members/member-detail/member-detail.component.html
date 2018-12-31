@@ -16,24 +16,27 @@
             </p>
           </div>
           <div><strong>Age:</strong>
-          <p>
-            {{user.age}}
-          </p></div>
+            <p>
+              {{user.age}}
+            </p>
+          </div>
           <div><strong>Last Active:</strong>
             <p>
               {{user.lastActive}}
-            </p></div>
-            <div><strong>Member Since:</strong>
-              <p>
-                {{user.created}}
-              </p></div>
+            </p>
+          </div>
+          <div><strong>Member Since:</strong>
+            <p>
+              {{user.created}}
+            </p>
+          </div>
 
-              <div class="card-footer">
-                <div class="btn-group d-flex">
-                <button class="btn btn-primary w-100">Like</button>
-                <button class="btn btn-success w-100">Message</button>
-              </div>
-              </div>
+          <div class="card-footer">
+            <div class="btn-group d-flex">
+              <button class="btn btn-primary w-100">Like</button>
+              <button class="btn btn-success w-100">Message</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -53,26 +56,26 @@
             <p>{{user.lookingFor}}</p>
           </tab>
           <tab heading="Interests">
-              <h4>
-                Interests
-              </h4>
-              <p>
-                {{user.interest}}
-              </p>
-            </tab>
-            <tab heading="Photos">
+            <h4>
+              Interests
+            </h4>
+            <p>
+              {{user.interest}}
+            </p>
+          </tab>
+          <tab heading="Photos">
 
-                    <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
 
-              </tab>
-              <tab heading="Messages">
-                  <h4>
-                      Messages
-                  </h4>
-                  <p>
-                  // some Messages
-                  </p>
-                </tab>
+          </tab>
+          <tab heading="Messages">
+            <h4>
+              Messages
+            </h4>
+            <p>
+              // some Messages
+            </p>
+          </tab>
         </tabset>
       </div>
     </div>
