@@ -12514,22 +12514,24 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "e:\\AngularProject\\AngularApp.API\\AngularApp.API.csproj",
+      "projectUniqueName": "E:\\AngularProject\\AngularApp.API\\AngularApp.API.csproj",
       "projectName": "AngularApp.API",
-      "projectPath": "e:\\AngularProject\\AngularApp.API\\AngularApp.API.csproj",
+      "projectPath": "E:\\AngularProject\\AngularApp.API\\AngularApp.API.csproj",
       "packagesPath": "C:\\Users\\spide_000\\.nuget\\packages\\",
-      "outputPath": "e:\\AngularProject\\AngularApp.API\\obj\\",
+      "outputPath": "E:\\AngularProject\\AngularApp.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\spide_000\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\spide_000\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
