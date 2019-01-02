@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { User } from '../../_models/user';
-import { AlertifyService } from '../../_services/alertify.service';
-import { UserService } from '../../_services/user.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,7 +9,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MemberListComponent implements OnInit {
   users: User[];
-  constructor(private userService: UserService, private  alertifyService: AlertifyService, private route: ActivatedRoute) { }
+  search: String = '';
+  @ViewChild('search') el: ElementRef;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -19,13 +20,13 @@ export class MemberListComponent implements OnInit {
     });
   }
 
-  loadUsers() {
-    this.userService.getUsers().subscribe((user: User[]) => {
-      this.users = user;
-    },
-    error => {
-      this.alertifyService.error(error);
-    });
+  searchUsers() {
+    if (this.el.nativeElement.value.length > 0) {
+      this.users =  this.users.filter( x => x.knownAs.toLowerCase().includes(this.el.nativeElement.value.toLowerCase()));
+    } else {
+      this.route.data.subscribe(data => {
+        this.users = data['users'];
+      });
+    }
   }
-
 }

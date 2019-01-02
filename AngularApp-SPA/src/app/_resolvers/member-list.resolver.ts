@@ -14,6 +14,7 @@ export class MemberListResolver implements Resolve<User[]> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
     return this.userService.getUsers()
+
     // using .pipe is optional because resolver automatically subscribe
     .pipe(
       catchError(error => {
