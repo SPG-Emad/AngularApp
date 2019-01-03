@@ -13,7 +13,7 @@ export class AuthService {
 jwtHelper = new JwtHelperService();
 decodedToken: any;
 currentUser: User;
-photoUrl = new BehaviorSubject<string>('../../assets/user.png');
+photoUrl = new BehaviorSubject<string>('../../../assets/user.png');
 currentPhotoUrl = this.photoUrl.asObservable();
 
   baseUrl = environment.apiUrl + 'auth/';

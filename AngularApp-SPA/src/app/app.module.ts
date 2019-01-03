@@ -14,7 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
 import { TabsModule } from 'ngx-bootstrap';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
@@ -61,6 +61,8 @@ export function tokenGetter() {
       RouterModule.forRoot(appRoutes),
       BsDropdownModule.forRoot(),
       BsDatepickerModule.forRoot(),
+      PaginationModule.forRoot(),
+      ButtonsModule.forRoot(),
       TabsModule.forRoot(),
       JwtModule.forRoot({
         config: {

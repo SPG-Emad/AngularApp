@@ -10,10 +10,14 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class MemberListResolver implements Resolve<User[]> {
+
+  pageNumber = 1;
+  pageSize = 5;
+
   constructor(private userService: UserService, private router: Router, private alertify: AlertifyService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
-    return this.userService.getUsers()
+    return this.userService.getUsers(this.pageNumber, this.pageSize)
 
     // using .pipe is optional because resolver automatically subscribe
     .pipe(
