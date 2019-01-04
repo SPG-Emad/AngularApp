@@ -106,5 +106,54 @@ namespace AngularApp.API.Data
         {
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<Message> GetMessage(int id)
+        {
+            return await _context.Messages.FirstOrDefaultAsync(m => m.Id == id);
+        }
+
+        public async Task<PagedList<Message>> GetMessagesForUser(MessageParams messageParams)
+        {
+
+            // The Include method works quite well for Lists on objects, but what if there is a need for multiple levels of depth. For example, Each Sender has its own image and each Recipient has its own image.
+            var messages = _context.Messages
+                                    .Include(u => u.Sender)
+                                      .ThenInclude(p => p.Photos)
+                                    .Include(u => u.Recipient)
+                                        .ThenInclude(p => p.Photos).AsQueryable();
+
+            switch (messageParams.MessageContainer)
+            {
+                case "Inbox":
+                    messages = messages.Where(u => u.RecipientId == messageParams.UserId);
+                    break;
+                case "Outbox":
+                    messages = messages.Where(u => u.SenderId == messageParams.UserId);
+                    break;
+                default:
+                    messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.IsRead == false);
+                    break;
+            }
+
+            messages = messages.OrderByDescending(d => d.MessageSent);
+            return await PagedList<Message>.CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
+        }
+
+        public async Task<IEnumerable<Message>> GetMessagesThread(int userId, int recipientId)
+        {
+             var messages = await _context.Messages
+                                    .Include(u => u.Sender)
+                                      .ThenInclude(p => p.Photos)
+                                    .Include(u => u.Recipient)
+                                      .ThenInclude(p => p.Photos)
+                                    .Where(m => 
+                                    m.RecipientId == userId && m.SenderId == recipientId 
+                                        ||
+                                    m.RecipientId == recipientId && m.SenderId == userId)
+                                    .OrderByDescending(m=> m.MessageSent)
+                                    .ToListAsync();
+                
+            return messages;
+        }
     }
 }

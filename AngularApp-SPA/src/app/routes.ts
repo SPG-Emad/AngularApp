@@ -11,6 +11,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaged-changes.guard';
 import { ListsResolver } from './_resolvers/lists.resolver';
+import { MessagesResolver } from './_resolvers/messages.resolver';
 
 export const appRoutes: Routes = [
   {
@@ -47,7 +48,8 @@ export const appRoutes: Routes = [
       {
         path: 'messages',
         component: MessagesComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        resolve: {messages: MessagesResolver}
       },
       {
         path: 'lists',
