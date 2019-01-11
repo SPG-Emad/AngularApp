@@ -4,7 +4,6 @@ import { UserService } from '../../_services/user.service';
 import { AuthService } from '../../_services/auth.service';
 import { AlertifyService } from '../../_services/alertify.service';
 import { tap } from 'rxjs/operators';
-import { currentId } from 'async_hooks';
 
 @Component({
   selector: 'app-member-messages',

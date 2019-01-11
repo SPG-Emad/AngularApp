@@ -1,3 +1,10 @@
+@import url('../node_modules/bootstrap/dist/css/bootstrap.min.css');
+@import url('../node_modules/bootswatch/dist/flatly/bootstrap.min.css');
+@import url('../node_modules/font-awesome/css/font-awesome.css');
+@import url('../node_modules/alertifyjs/build/css/alertify.min.css');
+@import url('../node_modules/alertifyjs/build/css/themes/bootstrap.min.css');
+@import url('../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css');
+
 .tab-panel {
     border: 1px solid #ddd;
     padding: 10px;
