@@ -20,6 +20,7 @@ namespace AngularApp.API.Controllers
         private readonly IAuthRepository _repo;
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
+
         public AuthController(IAuthRepository repo, IConfiguration config, IMapper mapper)
         {
             this._mapper = mapper;
@@ -32,6 +33,7 @@ namespace AngularApp.API.Controllers
         {
             // validate the request
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
+
             if (await _repo.UserExist(userForRegisterDto.Username))
                 return BadRequest("Username already exist");
 

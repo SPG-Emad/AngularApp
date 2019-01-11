@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +12,7 @@ import { Message } from '../_models/message';
 })
 export class UserService {
   baseUrl = environment.apiUrl;
+  refreshUnreadMessageCount = new EventEmitter<string>();
   constructor(private http: HttpClient) {}
 
   getUsers(page?, itemsPerPage?, userParams?, likesParam?): Observable<PaginatedResult<User[]>> {
@@ -104,6 +105,12 @@ export class UserService {
     return this.http.get<Message[]>(this.baseUrl + 'users/' + id + '/messages/thread/' + recipientId);
   }
 
+  countUnreadMessages(userId: number) {
+    return this.http.get(this.baseUrl + 'users/' + userId + '/messages/unread');
+  }
+
+
+  
   sendMessage(id: number, message: Message) {
     return this.http.post(this.baseUrl + 'users/' + id + '/messages', message);
   }

@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\AngularApp.API",
+    "\\AngularApp.API\\Controllers",
+    "\\AngularApp.API\\Data",
+    "\\AngularApp.API\\Models"
+  ],
+  "SelectedNode": "\\AngularApp.API\\Data\\DatingRepository.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -155,5 +155,9 @@ namespace AngularApp.API.Data
 
             return messages;
         }
+        public async Task<int> GetCountOfTotalUnreadMessages(int userId)
+        {
+            return await _context.Messages.Where(m => (m.RecipientId== userId &&m.IsRead == false)).CountAsync();
+        }
     }
 }

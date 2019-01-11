@@ -43,6 +43,19 @@ namespace AngularApp.API.Controllers
             return Ok(messageFromRepo);
         }
 
+        [HttpGet("unread", Name = "GetCountOfTotalUnreadMessages")]
+        public async Task<IActionResult> GetCountOfTotalUnreadMessages(int userId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var messageFromRepo = await _repo.GetCountOfTotalUnreadMessages(userId);
+
+            return Ok(messageFromRepo);
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetMessagesForUser(int userId, [FromQuery] MessageParams messageParams)
         {

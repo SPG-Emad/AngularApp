@@ -426,9 +426,9 @@ MIT
 
 ngx-bootstrap/utils
 
-ngx-bootstrap/positioning
-
 ngx-bootstrap/component-loader
+
+ngx-bootstrap/positioning
 
 ngx-bootstrap/dropdown
 

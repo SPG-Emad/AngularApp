@@ -19,5 +19,6 @@ namespace AngularApp.API.Data
          Task<PagedList<Message>> GetMessagesForUser(MessageParams messageParams);
          Task<IEnumerable<Message>> GetMessagesThread(int userId, int recipientId);
 
+         Task<int> GetCountOfTotalUnreadMessages(int id);
     }
 }

@@ -11,11 +11,11 @@
           <a class="nav-link"  [routerLink]="['/lists']">Lists</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/messages']">Messages</a>
+          <a class="nav-link" [routerLink]="['/messages']">Messages 
+          <span class="badge badge-success">{{unreadMessages }}</span>
+            </a>
         </li>
       </ul>
-
-   
 
 
       <div class="dropdown" *ngIf="loggedIn()" dropdown>

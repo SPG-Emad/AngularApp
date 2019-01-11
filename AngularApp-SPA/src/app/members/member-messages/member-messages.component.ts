@@ -15,12 +15,14 @@ export class MemberMessagesComponent implements OnInit {
   @Input() recipientId: number;
   messages: Message[];
   newMessage: any = {};
+  totalsUnRead;
 
   constructor(private userService: UserService, private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
   this.loadMessages();
   }
+
 
   loadMessages() {
     const currentUserId = +this.authService.decodedToken.nameid;
@@ -36,6 +38,11 @@ export class MemberMessagesComponent implements OnInit {
        }))
     .subscribe(messages => {
       this.messages = messages;
+
+      this.userService
+      .countUnreadMessages(currentUserId)
+      .subscribe(total => (this.totalsUnRead = total.toString()));
+      this.userService.refreshUnreadMessageCount.emit(this.totalsUnRead);
     }, error => {
       this.alertify.error(error);
     });
